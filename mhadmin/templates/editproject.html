@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body">
+                  <form method="post" action="{% url 'updateproject' proid=project.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <h1 class="h3 mb-0 text-gray-800"> <b>Edit Project </b></h1><br><br>
+
+
+                      <div class="form-group">
+                      <label for="exampleInputPassword">Name</label>
+                      <input type="text" class="form-control" id="exampleInputPassword" placeholder="Enter Name of Project" name="pnam" value="{{project.Project_name}}">
+                    </div>
+                      <br>
+                      <div class="form-group">
+                      <label for="exampleInputPassword">Description</label>
+                      <textarea class="form-control" aria-label="With textarea" placeholder="Enter the Description" name="pdescript">{{project.Description}}</textarea>
+                      </div>
+                      <br>
+                    <div class="form-group">
+                        <label>Image</label><br>
+                        <img src="{{project.Image.url}}">
+
+                      <input type="file" name="image">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+</body>
+</html>
+{% endblock %}

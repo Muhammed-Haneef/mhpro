@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+            <div class="col-lg-12 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Job Openings</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Position</th>
+                        <th>Job Description</th>
+                        <th>Action</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {% for d in data %}
+                        <td>{{d.Position}}</td>
+                        <td>{{d.Description}}</td>
+                        <td><a href="#" class="btn btn-sm btn-primary">Edit</a></td>
+                        <td><a href="{% url 'delete_job' jobid=d.id %}" class="btn btn-sm btn-primary">Delete</a></td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+          </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body">
+                  <form method="post" action="{% url 'updatedesign' desid=design.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <h1 class="h3 mb-0 text-gray-800"> <b>Edit Design & Project </b></h1><br><br>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Service</label>
+                      <select  class="form-control" id="exampleInputPassword1" placeholder="Enter Name of Service" name="sname">
+                          <option>{{design.Service}}</option>
+                          {% for d in data %}
+                          <option>{{d.service_name}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputPassword">Name</label>
+                      <input type="text" class="form-control" id="exampleInputPassword" placeholder="Enter Name of Design" name="dname" value="{{design.Design_Name}}">
+                    </div>
+                      <br>
+                      <div class="form-group">
+                      <label for="exampleInputPassword1">Description</label>
+                      <textarea class="form-control" aria-label="With textarea" placeholder="Enter the Description" name="sdescript">{{design.Description}}</textarea>
+                      </div>
+                      <br>
+                    <div class="form-group">
+                        <label>Image</label><br>
+                    <img src="{{design.Image.url}}" width="200px" height="150px">
+                        <input type="file"  name="image">
+                    </div><br><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+</body>
+</html>
+{% endblock %}

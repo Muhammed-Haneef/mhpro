@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>SERVICE</th>
+                        <th>DESIGN</th>
+                        <th>DESCRIPTION</th>
+                        <th>IMAGE</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for d in data %}
+                      <tr class="table">
+                        <td>{{d.Service}}</td>
+                        <td>{{d.Design_Name}}</td>
+                        <td>{{d.Description}}</td>
+                        <td>
+                            <img src="{{d.Image.url}}" width="200px" height="150px">
+                        </td>
+                        <td>
+                            <a href="{% url 'deldesign' desid=d.id %}" class="btn btn-sm btn-primary">DELETE</a><br><br>
+                            <a href="{% url 'editdesign' desid=d.id %}" class="btn btn-sm btn-primary">EDIT</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+</body>
+</html>
+{% endblock %}
